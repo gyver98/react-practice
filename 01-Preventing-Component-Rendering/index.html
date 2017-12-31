@@ -29,12 +29,30 @@
       constructor(props) {
         super(props);
         this.state = { showWarning: true };
+        this.handleToggleButton = this.handleToggleButton.bind(this);
+      }
+
+      handleToggleButton() {
+        console.log("before: "+ this.state.showWarning);
+        this.setState(prevState => ({
+          showWarning: !prevState.showWarning
+        }));
+        console.log("after: "+ this.state.showWarning);
       }
 
       render() {
         const isShowWarning = this.state.showWarning;
+        let button = null;
+        if (isShowWarning) {
+          button = <button onClick={this.handleToggleButton}>Show</button>
+        } else {
+          button = <button onClick={this.handleToggleButton}>hide</button>
+        }
         return (
-          <WarningBanner warn={isShowWarning} />
+          <div>
+            <WarningBanner warn={isShowWarning} />
+            {button}
+          </div>
         )
       }
     }
