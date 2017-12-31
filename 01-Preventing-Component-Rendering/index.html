@@ -33,27 +33,22 @@
       }
 
       handleToggleButton() {
-        console.log("before: "+ this.state.showWarning);
         this.setState(prevState => ({
           showWarning: !prevState.showWarning
         }));
-        console.log("after: "+ this.state.showWarning);
       }
 
       render() {
         const isShowWarning = this.state.showWarning;
-        let button = null;
-        if (isShowWarning) {
-          button = <button onClick={this.handleToggleButton}>Show</button>
-        } else {
-          button = <button onClick={this.handleToggleButton}>hide</button>
-        }
+        
         return (
           <div>
             <WarningBanner warn={isShowWarning} />
-            {button}
+            <button onClick={this.handleToggleButton}>
+              {isShowWarning ? 'Hide' : 'Show'}  
+            </button>
           </div>
-        )
+        );
       }
     }
 
