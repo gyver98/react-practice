@@ -46,36 +46,82 @@
     //   }
     // }
 
-    class FlavorForm extends React.Component {
+    // <select> example
+    // class FlavorForm extends React.Component {
+    //   constructor(props) {
+    //     super(props);
+    //     this.state = {value: 'mango'};
+    //     this.handleChange = this.handleChange.bind(this);
+    //     this.handleSubmit = this.handleSubmit.bind(this);
+    //   }
+
+    //   handleChange(event) {
+    //     this.setState({value: event.target.value});
+    //   }
+
+    //   handleSubmit(event) {
+    //     alert('Your flavor is : ' + this.state.value);
+    //     event.preventDefault();
+    //   }
+
+    //   render() {
+    //     return (
+    //       <form onSubmit={this.handleSubmit}>
+    //         <label>
+    //           Pick your favorite La Croix flavor:
+    //           <select value={this.state.value} onChange={this.handleChange}>
+    //             <option value="grapefruit">Grapefruit</option>
+    //             <option value="lime">Lime</option>
+    //             <option value="coconut">Coconut</option>
+    //             <option value="mango">Mango</option>
+    //           </select>
+    //         </label>
+    //         <input type="submit" value="Submit" />
+    //       </form>
+    //     )
+    //   }
+    // }
+
+
+    // ReactDOM.render(
+    //   <FlavorForm />,
+    //   document.getElementById('root')
+    // );
+
+    // file input example
+
+    class FileInput extends React.Component {
       constructor(props) {
         super(props);
-        this.state = {value: 'mango'};
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
-      handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-
       handleSubmit(event) {
-        alert('Your flavor is : ' + this.state.value);
+
         event.preventDefault();
+        alert(
+          `Selected file - ${
+            this.fileInput.files[0].name
+          }`
+        );
       }
 
       render() {
         return (
           <form onSubmit={this.handleSubmit}>
             <label>
-              Pick your favorite La Croix flavor:
-              <select value={this.state.value} onChange={this.handleChange}>
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
-              </select>
+              Upload file:
+              <input 
+                type="file" 
+                ref={input => { 
+                  this.fileInput = input 
+                }} 
+              />
             </label>
-            <input type="submit" value="Submit" />
+            <br />
+            <button type="submit">
+              Submit  
+            </button>
           </form>
         )
       }
@@ -83,7 +129,7 @@
 
 
     ReactDOM.render(
-      <FlavorForm />,
+      <FileInput />,
       document.getElementById('root')
     );
 
