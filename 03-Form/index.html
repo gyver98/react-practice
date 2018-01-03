@@ -90,46 +90,98 @@
 
     // file input example
 
-    class FileInput extends React.Component {
+    // class FileInput extends React.Component {
+    //   constructor(props) {
+    //     super(props);
+    //     this.handleSubmit = this.handleSubmit.bind(this);
+    //   }
+
+    //   handleSubmit(event) {
+
+    //     event.preventDefault();
+    //     alert(
+    //       `Selected file - ${
+    //         this.fileInput.files[0].name
+    //       }`
+    //     );
+    //   }
+
+    //   render() {
+    //     return (
+    //       <form onSubmit={this.handleSubmit}>
+    //         <label>
+    //           Upload file:
+    //           <input 
+    //             type="file" 
+    //             ref={input => { 
+    //               this.fileInput = input 
+    //             }} 
+    //           />
+    //         </label>
+    //         <br />
+    //         <button type="submit">
+    //           Submit  
+    //         </button>
+    //       </form>
+    //     )
+    //   }
+    // }
+
+
+    // ReactDOM.render(
+    //   <FileInput />,
+    //   document.getElementById('root')
+    // );
+
+    //Handling Multiple Inputs
+
+    class Reservation extends React.Component {
       constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+          isGoing: true,
+          numberOfGuests: 2
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
       }
 
-      handleSubmit(event) {
+      handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
 
-        event.preventDefault();
-        alert(
-          `Selected file - ${
-            this.fileInput.files[0].name
-          }`
-        );
+        this.setState({
+          [name] : value
+        });
       }
 
       render() {
         return (
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <label>
-              Upload file:
-              <input 
-                type="file" 
-                ref={input => { 
-                  this.fileInput = input 
-                }} 
-              />
+              Is going:
+              <input
+                name="isGoing"
+                type="checkbox"
+                checked={this.state.isGoing}
+                onChange={this.handleInputChange} />  
             </label>
             <br />
-            <button type="submit">
-              Submit  
-            </button>
+            <label>
+              Number of guests:
+              <input
+                name="numberOfGuests"
+                type="number"
+                value={this.state.numberOfGuests}
+                onChange={this.handleInputChange} />
+            </label>  
           </form>
         )
       }
     }
-
-
+    
     ReactDOM.render(
-      <FileInput />,
+      <Reservation />,
       document.getElementById('root')
     );
 
