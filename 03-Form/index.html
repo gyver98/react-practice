@@ -19,6 +19,8 @@
       constructor(props) {
         super(props);
         this.state = {value: ''};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
 
       handleChange(event) {
@@ -28,6 +30,7 @@
       handleSubmit(event) {
         alert("name was submitted: " + this.state.value);
         event.preventDefault();
+        this.setState({value: ''});
       }
 
       render() {
