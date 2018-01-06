@@ -15,6 +15,40 @@
   <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
   <script type="text/babel">
     
+    // function FancyBorder(props) {
+    //   return (
+    //     <div className={'FancyBorder FancyBorder-' + props.color}>
+    //       {props.children}
+    //     </div>  
+    //   )
+    // }
+
+    // function Dialog(props) {
+    //   return (
+    //     <FancyBorder color="blue">
+    //       <h1 className="Dialog-title">
+    //         {props.title}
+    //       </h1>
+    //       <p className="Dialog-message">
+    //         {props.message}
+    //       </p>
+    //     </FancyBorder>
+    //   )
+    // }
+    
+    // function WelcomeDialog() {
+    //   return (
+    //     <Dialog
+    //       title="Welcome"
+    //       message="Thank you" />
+    //   );
+    // }
+
+    // ReactDOM.render(
+    //   <WelcomeDialog />,
+    //   document.getElementById('root')
+    // );
+
     function FancyBorder(props) {
       return (
         <div className={'FancyBorder FancyBorder-' + props.color}>
@@ -22,7 +56,7 @@
         </div>  
       )
     }
-
+    
     function Dialog(props) {
       return (
         <FancyBorder color="blue">
@@ -32,20 +66,44 @@
           <p className="Dialog-message">
             {props.message}
           </p>
+          {props.children}
         </FancyBorder>
       )
     }
-    
-    function WelcomeDialog() {
-      return (
-        <Dialog
-          title="Welcome"
-          message="Thank you" />
-      );
-    }
 
+    class SignupDialog extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {login: ''};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSignup = this.handleSignup.bind(this);
+      }
+
+      handleChange(e) {
+        this.setState({login: e.target.value});
+      }
+
+      handleSignup() {
+        alert(`Welcome aboard, ${this.state.login}!`);
+      }
+
+      render() {
+        return (
+          <Dialog 
+            title="Avengers Program"
+            message="What is your favoriate character?">
+            <input value={this.state.login}
+                   onChange={this.handleChange} />
+            <button onClick={this.handleSignup}>
+              Sign Me Up!
+            </button>
+          </Dialog>
+        )
+      }
+    }
+    
     ReactDOM.render(
-      <WelcomeDialog />,
+      <SignupDialog />,
       document.getElementById('root')
     );
 
