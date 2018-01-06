@@ -32,6 +32,17 @@
     */
 
     //Step 2: Build a static version in React
+    /** 
+    The easiest way is to build a version that takes your data model 
+    and renders the UI but has no interactivity. 
+    It’s best to decouple these processes because building a static version requires 
+    a lot of typing and no thinking, and adding interactivity requires 
+    a lot of thinking and not a lot of typing.
+
+    Don’t use state at all to build this static version. 
+    State is reserved only for interactivity, that is, data that changes over time. 
+    Since this is a static version of the app, you don’t need it.
+    */
 
     class ProductRow extends React.Component {
       render() {
