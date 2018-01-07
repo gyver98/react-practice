@@ -307,11 +307,13 @@
       }
 
       handleFilterTextChange(filterText) {
-        this.setState({filterText: filterText});
+        //this.setState({filterText: filterText});
+        this.setState({filterText}); // ES6 Object shorthand
       }
 
       handleInStockChange(inStockOnly) {
-        this.setState({inStockOnly: inStockOnly});
+        //this.setState({inStockOnly: inStockOnly});
+        this.setState({inStockOnly}); // ES6 Object shorthand
       }
       
       render() {
