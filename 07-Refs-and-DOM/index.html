@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>07</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+    
+    //Adding a Ref to a DOM Element
+
+    class CustomTextInput extends React.Component {
+      constructor(props) {
+        super(props);
+        this.focusTextInput = this.focusTextInput.bind(this);
+      }
+
+      render() {
+        return (
+          <div>
+            <input
+              type="text"
+              ref={(input) => { this.textInput = input; }} />
+            
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <CustomTextInput />,
+      document.getElementById('root')
+    );
+
+  </script>
+</body>
+
+</html>
