@@ -19,6 +19,7 @@
       constructor() {
         super();
         this.state = { toggle: false };
+        this.handleToggle = this.handleToggle.bind(this);
       }
 
       handleToggle() {
