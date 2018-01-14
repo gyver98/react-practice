@@ -20,10 +20,21 @@
     class CustomTextInput extends React.Component {
       constructor(props) {
         super(props);
-        this.focusTextInput = this.focusTextInput.bind(this);
+        // To get rid of .bind(this), we can use experimental public class field feature in JS.
+        // Public class field feature allow you to use arror function syntax in your classes.
+        //this.focusTextInput = this.focusTextInput.bind(this);
       }
 
-      focusTextInput() {
+      // focusTextInput() {
+      //   // Explicitly focus the text input using the raw DOM API
+      //   this.textInput.focus();
+      // }
+      
+      // An arrow function does not have its own this, but it has the this value of the enclosing execution context is used.
+      // Arrow functions lexically bind their context so this actually refers to the originating context.
+      // Note that this is an experimental feature in JS, which means it’s not yet accepted into ECMAScript standard. 
+      // Until that happens, you can configure babel to transpile it using babel-plugin-transform-class-properties.  
+      focusTextInput = () => {
         // Explicitly focus the text input using the raw DOM API
         this.textInput.focus();
       }
