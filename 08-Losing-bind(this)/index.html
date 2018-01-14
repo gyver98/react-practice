@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>08</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+    
+    class ButtonWithBind extends React.Component {
+      constructor() {
+        super();
+        this.state = { toggle: false };
+      }
+
+      handleToggle() {
+        this.setState(prevState => ({
+          toggle: !prevState.toggle
+        }));
+      }
+
+      render() {
+        const toggle = this.state.toggle;
+
+        return (
+          <div>
+            <button onClick={this.handleToggle}>
+              {toggle ? "On" : "Off"}
+            </button>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <ButtonWithBind />,
+      document.getElementById('root')
+    );
+
+  </script>
+</body>
+
+</html>
