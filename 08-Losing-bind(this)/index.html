@@ -19,12 +19,32 @@
       constructor() {
         super();
         this.state = { toggle: false };
-        this.handleToggle = this.handleToggle.bind(this);
+        //this.handleToggle = this.handleToggle.bind(this);
       }
 
-      handleToggle() {
-        this.setState(prevState => ({
-          toggle: !prevState.toggle
+      // handleToggle() {
+      //   this.setState(prevState => ({
+      //     toggle: !prevState.toggle
+      //   }));
+      // }
+
+
+      //Now, let’s get rid of that annoying .bind(this). 
+      // In order to do that, we’ll use experimental public class field feature in JavaScript. 
+      // Public class field feature allow you to use arrow function syntax in your classes 
+      // An arrow function does not have its own this, but it has the this value of the enclosing execution context is used. 
+      // Arrow Functions lexically bind their context so this actually refers to the originating context. 
+      // That’s called Lexical Scoping if you’re into naming things. 
+      // Basically, it saves us from doing .bind(this) in our code. 
+      // Note that this is an experimental feature in JS, which means it’s not yet accepted into ECMAScript standard
+      // Until that happens, you can configure babel to transpile it using babel-plugin-transform-class-properties
+      handleToggle = () => {
+        // this.setState(prevState => ({
+        //   toggle: !prevState.toggle
+        // }));
+        // equivalent with
+        this.setState(({toggle}) => ({
+          toggle: !toggle
         }));
       }
 
