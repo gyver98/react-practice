@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>11</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+  
+
+    // controlled form
+    class SignUpForm extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          email: '',
+          password: ''
+        };
+      }
+
+      canBeSubmitted() {
+        const { email, password } = this.state;
+        return (
+          email.length > 0 && password.length > 0
+        );
+      }
+
+      handleSubmit = (e) => {
+        if (!this.canBeSubmitted()) {
+          e.preventDefault();
+          return;
+        }
+        
+        
+        const { email, password } = this.state;
+        alert(`Signed up with email: ${email} password: ${password}`);
+        
+      };
+
+      handleEmailChange = (e) => {
+        this.setState({email: e.target.value});
+      }
+
+      handlePasswordChange = (e) => {
+        this.setState({password: e.target.value});
+      }
+      
+      render() {
+        const isEnabled = this.canBeSubmitted();
+
+        return (
+          <form onSubmit={this.handleSubmit}>
+            <input
+              value={this.state.name}
+              onChange={this.handleEmailChange}
+              type="text"
+              placeholder="Enter email"
+            />
+            
+            <input
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+              type="password"
+              placeholder="Password"
+            />
+            <button type="submit" disabled={!isEnabled}>Sign up</button>  
+          </form>
+        );
+      }
+    }
+    
+
+    ReactDOM.render(
+      <SignUpForm />,
+      document.getElementById('root')
+    );
+
+  </script>
+</body>
+
+</html>
