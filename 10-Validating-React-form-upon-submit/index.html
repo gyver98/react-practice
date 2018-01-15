@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>10</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.0.0-rc.3/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.0.0-rc.3/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  <script type="text/babel">
+    
+    function validate(name, email, password) {
+      const errors = [];
+
+      if (name.length === 0) {
+        errors.push("Name can't be empty");
+        console.log("name: "+"name empty");
+      }
+      if (email.length < 5) {
+        errors.push("Email should be at least 5 characters long");
+      }
+      if (email.split('').filter(x => x === '@').length !== 1) {
+        errors.push("Email should contain a @");
+      }
+      if (email.indexOf('.') === -1) {
+        errors.push("Email should contain at least one dot");
+      }
+      if (password.length < 6) {
+        errors.push("Password should be at least 6 characters long");
+      }
+
+      return errors;
+    }
+    
+    // uncontrolled form
+    class SignUpForm extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          errors: []
+        };
+      }
+
+      handleSubmit = (e) => {
+        console.log("handle submit");
+        e.preventDefault();
+        
+        const name = ReactDOM.findDOMNode(this.nameInput).value;
+        const email = ReactDOM.findDOMNode(this.emailInput).value;
+        const password = ReactDOM.findDOMNode(this.passwordInput).value;
+
+        const errors = validate(name, email, password);
+
+        if (errors.length > 0) {
+          this.setState({ errors });
+          return;
+        }
+
+        // submit the data
+      };
+      
+      render() {
+        const { errors } = this.state;
+        return (
+          <form onSubmit={this.handleSubmit}>
+            {errors.map(error => (
+              <p key={error}>Error: {error}</p>
+            ))}
+            <input
+              ref={nameInput => this.nameInput = nameInput}
+              type="text"
+              placeholder="Name"
+            />
+            <input
+              ref={emailInput => this.emailInput = emailInput}
+              type="text"
+              placeholder="Email"
+            />
+            <input
+              ref={passwordInput => this.passwordInput = passwordInput}
+              type="password"
+              placedholder="Password"
+            />
+            <button type="submit">Submit</button>  
+          </form>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <SignUpForm />,
+      document.getElementById('root')
+    );
+
+  </script>
+</body>
+
+</html>
