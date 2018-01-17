@@ -38,23 +38,45 @@
     // }
 
     // binding in createReactClass()
-    var SayHello = createReactClass({
-      getInitialState: function() {
-        return {message: 'Hello!'};
-      },
+    // var SayHello = createReactClass({
+    //   getInitialState: function() {
+    //     return {message: 'Hello!'};
+    //   },
 
-      handleClick: function() {
+    //   handleClick: function() {
+    //     alert(this.state.message);
+    //   },
+
+    //   render: function() {
+    //     return (
+    //       <button onClick={this.handleClick}>
+    //         Say hello
+    //       </button>
+    //     );
+    //   }
+    // });
+
+    // experimental Class properties  
+    class SayHello extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {message: 'Hello!'};
+      }
+      
+      // WARNING: this syntax is experimental!
+      // Using an arrow here binds the method
+      handleClick= () => {
         alert(this.state.message);
-      },
+      }
 
-      render: function() {
+      render() {
         return (
           <button onClick={this.handleClick}>
             Say hello
           </button>
-        );
+        )
       }
-    });
+    }
     
     ReactDOM.render(
       <SayHello />,
