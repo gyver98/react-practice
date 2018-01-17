@@ -57,21 +57,41 @@
     // });
 
     // experimental Class properties  
+    // class SayHello extends React.Component {
+    //   constructor(props) {
+    //     super(props);
+    //     this.state = {message: 'Hello!'};
+    //   }
+      
+    //   // WARNING: this syntax is experimental!
+    //   // Using an arrow here binds the method
+    //   handleClick= () => {
+    //     alert(this.state.message);
+    //   }
+
+    //   render() {
+    //     return (
+    //       <button onClick={this.handleClick}>
+    //         Say hello
+    //       </button>
+    //     )
+    //   }
+    // }
+
+    // use arrow functions  
     class SayHello extends React.Component {
       constructor(props) {
         super(props);
         this.state = {message: 'Hello!'};
       }
       
-      // WARNING: this syntax is experimental!
-      // Using an arrow here binds the method
-      handleClick= () => {
+      handleClick() {
         alert(this.state.message);
       }
 
       render() {
         return (
-          <button onClick={this.handleClick}>
+          <button onClick={(e) => this.handleClick(e)}>
             Say hello
           </button>
         )
