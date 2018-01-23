@@ -1,0 +1,6 @@
+.app {
+  height: 10em;
+  width: 10em;
+  background: lightblue;
+  overflow: hidden;
+}

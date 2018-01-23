@@ -16,6 +16,8 @@
   <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
   <script type="text/babel">
     
+    const appRoot = document.getElementById('app-root');
+    
     class App extends React.Component {
       constructor(props) {
         super(props);
@@ -55,9 +57,11 @@
             <button onClick={this.handleShow}>Show modal</button>
             {modal}
           </div>
-        )
+        );
       }
     }
+
+    ReactDOM.render(<App />, appRoot);
     
 
   </script>
