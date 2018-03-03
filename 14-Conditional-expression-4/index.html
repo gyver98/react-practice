@@ -75,9 +75,7 @@
           <div>
             <p>Text: {this.state.text}</p>
             {
-              view
-              ? null
-              : (
+              !view && (
                 <p>
                   <input 
                     onChange={this.handleChange}
